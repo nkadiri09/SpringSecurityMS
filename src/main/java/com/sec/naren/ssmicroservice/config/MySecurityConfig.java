@@ -16,13 +16,24 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Override
+    @Autowired
+    private MyAuthenticationProvider authenticationProvider;
+
+/*    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        System.out.println("auth is:"+auth);
         InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
         UserDetails userDetails = User.withUsername("nkadiri").
                 password(passwordEncoder.encode("NAREN@ram5*")).authorities("read").build();
         userDetailsManager.createUser(userDetails);
         auth.userDetailsService(userDetailsManager);
+    }*/
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        System.out.println("auth is:" + auth);
+        System.out.println("authenticationProvider is:" + authenticationProvider);
+        auth.authenticationProvider(authenticationProvider);
     }
 
     @Override
