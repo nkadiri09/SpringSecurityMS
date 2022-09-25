@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class HelloController {
 
-
-
     @GetMapping("/hello")
     public String sayHello(){
         System.out.println("Inside HelloController:");
